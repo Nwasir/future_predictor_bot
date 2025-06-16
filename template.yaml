@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Flask app with CORS and custom static/templates
+
+Resources:
+  FlaskApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: FlaskApi
+      StageName: Prod
+      Cors:
+        AllowMethods: "'OPTIONS,GET,POST'"
+        AllowHeaders: "'Content-Type'"
+        AllowOrigin: "'http://future-predictor-frontend.s3-website-us-west-2.amazonaws.com'"
+
+  FlaskFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.lambda_handler
+      Runtime: python3.11
+      CodeUri: .
+      MemorySize: 512
+      Timeout: 30
+      Environment:
+        Variables:
+          FLASK_ENV: production
+      Events:
+        Proxy:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+            RestApiId:
+              Ref: FlaskApi
+
+Outputs:
+  ApiUrl:
+    Description: "API Gateway endpoint"
+    Value:
+      Fn::Sub: "https://${FlaskApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
