@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Predictor Chatbot</title>
+    <meta name="description"
+        content="Discover your personalized path with our AI Prediction Bot — a mystical, friendly, and sometimes humorous guide that weaves your past, passions, and goals into inspiring life forecasts using beautifully crafted narrative templates.">
+    <meta name="Author" content="Future Predictor Chatbot">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+    <div id="chatbot-container">
+        <h3>Hello! I am the Oracle of Code. Provide me with some details about your life, and I shall predict your
+            future</h3>
+
+        <div id="input-container">
+            <div id="output"></div>
+            <!-- Initial Details Form -->
+            <form id="details-form">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="text" id="hobby" placeholder="Your Favorite Hobby" required>
+                <input type="text" id="occupation" placeholder="Your Current Occupation" required>
+                <input type="text" id="future_goal" placeholder="What you want to be in the future" required>
+                <textarea id="positive_moment" placeholder="Describe a positive moment in your life"
+                    required></textarea>
+                <textarea id="negative_moment" placeholder="Describe a negative moment you overcame"
+                    required></textarea>
+                <button type="submit">Predict My Future</button>
+            </form>
+
+            <!-- Follow-up Question Form (Initially Hidden) -->
+            <form id="question-form" class="hidden">
+                <input type="text" id="question-input" placeholder="Ask a question or say thank you...">
+                <button type="submit">Send</button>
+            </form>
+            
+            <!-- Start Over Button (Initially Hidden) -->
+            <button id="start-over-btn" class="hidden" style="margin-top:10px;">Start Over</button>
+        </div>
+    </div>
+
+    <!-- <script src="{{ url_for('static', filename='js/script.js') }}"></script> -->
+     <script src="static/js/script.js"></script>
+</body>
+
+</html>
